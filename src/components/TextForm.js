@@ -7,13 +7,17 @@ export default function TextForm(props) {
     const upClick = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Text Converted to UpperCase","success");
     }
     const lowerClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Text Converted to LowerCase","success");
     }
     const clearForm = () => {
         setText("");
+        props.showAlert("Text field Cleared","success");
+
     }
     const generateRandomText = (length) => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -28,6 +32,7 @@ export default function TextForm(props) {
     const randText = () => {
         const randomText = generateRandomText(5);
         setText(randomText + "@email.com");
+        props.showAlert("Random Email generated","success");
     };
     const handleOnChange = (event) => {
         setText(event.target.value);
@@ -36,15 +41,18 @@ export default function TextForm(props) {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
+        props.showAlert("Speech text enabled","success");
     }
     const rmvExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces has been removed","success");
     }
     const cpyText = () => {
         let newText = document.getElementById("textBox");
         newText.select();
         navigator.clipboard.writeText(newText.value);
+        props.showAlert("Text Copied to Clipboard","success");
     }
     const [text, setText] = useState("Enter Text here");
     return (
