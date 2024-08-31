@@ -4,3 +4,6 @@
 .heading{
     text-align: center;
 }
+.accordion-button::after {
+    filter: invert(1);
+}

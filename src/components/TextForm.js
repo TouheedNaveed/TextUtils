@@ -49,9 +49,7 @@ export default function TextForm(props) {
         props.showAlert("Extra Spaces has been removed","success");
     }
     const cpyText = () => {
-        let newText = document.getElementById("textBox");
-        newText.select();
-        navigator.clipboard.writeText(newText.value);
+        navigator.clipboard.writeText(text);
         document.getSelection().removeAllRanges();
         props.showAlert("Text Copied to Clipboard","success");
     }
@@ -79,7 +77,7 @@ export default function TextForm(props) {
             </div>
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : "black" }}>
                 <h2 className="ts">Your Text Summary</h2>
-                <p className='p'>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+                <p className='p'>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
                 <p className='p'>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minuite to read</p>
                 <h3>Preview:</h3>
                 <p>{text.length > 0 ? text : "Enter some text in the textbox to preview."}</p>
